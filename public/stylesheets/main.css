@@ -76,8 +76,8 @@ textarea {
     font-size: 12px; } }
 
 body, input, textarea, button {
-  font-family: open sans;
-  font-weight: 100; }
+  font-family: Open Sans, sans-serif;
+  font-weight: 300; }
 
 a {
   text-decoration: none;
@@ -94,8 +94,8 @@ div.newtweet {
     margin-top: 5px;
     border: 2px solid #000; }
     div.newtweet input::-webkit-input-placeholder, div.newtweet textarea::-webkit-input-placeholder {
-      font-family: open sans;
-      font-weight: 100;
+      font-family: Open Sans, sans-serif;
+      font-weight: 300;
       padding-left: 0px;
       line-height: 1.2; }
     div.newtweet input:focus, div.newtweet textarea:focus {
@@ -121,7 +121,7 @@ div.tweets {
     display: inline-block;
     cursor: pointer; }
   div.tweets h2 {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 1.2em;
     text-transform: uppercase;
     margin-bottom: 0; }
