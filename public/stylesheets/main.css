@@ -1,0 +1,136 @@
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+html,
+button,
+input,
+select,
+textarea {
+  color: #222; }
+
+button,
+input,
+select,
+textarea {
+  background: none;
+  padding: none;
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+  border: none;
+  border-spacing: 0; }
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none; }
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+html {
+  font-size: 1em;
+  line-height: 1.4; }
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+audio,
+canvas,
+img,
+video {
+  vertical-align: middle; }
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+textarea {
+  resize: vertical; }
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0; }
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+@media (max-width: 767px) {
+  body {
+    font-size: 12px; } }
+
+body, input, textarea, button {
+  font-family: open sans;
+  font-weight: 100; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+  a:hover {
+    color: #ff9999; }
+
+div.newtweet {
+  width: 100%; }
+  div.newtweet input, div.newtweet textarea {
+    padding: 2px;
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    border: 2px solid #000; }
+    div.newtweet input::-webkit-input-placeholder, div.newtweet textarea::-webkit-input-placeholder {
+      font-family: open sans;
+      font-weight: 100;
+      padding-left: 0px;
+      line-height: 1.2; }
+    div.newtweet input:focus, div.newtweet textarea:focus {
+      border-color: #ff9999; }
+  div.newtweet form {
+    margin-top: 1em; }
+  div.newtweet button {
+    font-weight: 700;
+    margin-top: 5px;
+    background: transparent;
+    border: 2px solid #000; }
+    div.newtweet button:hover, div.newtweet button:focus {
+      border-color: #ff9999; }
+
+div.tweets {
+  width: 70%;
+  margin: 2em auto; }
+  div.tweets div.profilePic {
+    width: 100px;
+    display: inline-block; }
+  div.tweets div.text {
+    width: 100%;
+    display: inline-block;
+    cursor: pointer; }
+  div.tweets h2 {
+    font-weight: 100;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    margin-bottom: 0; }
+  div.tweets p {
+    margin: 0;
+    font-weight: 600; }
+  @media (max-width: 767px) {
+    div.tweets {
+      width: 85%; } }
+  @media (min-width: 1600px) {
+    div.tweets {
+      width: 50%; } }

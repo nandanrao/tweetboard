@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% if show_form %}
+<!--
+<div class="newtweet">
+	<form action='/submit' method='POST'>
+		<input name='name' id='name_field' placeholder='Name' />
+		<textarea name='tweet' id='tweet_field' placeholder='Enter your new tweet here!'></textarea>
+		<button type='submit'>post</button>
+	</form>
+</div>
+-->
+{% endif %}
+
+<div class="tweets" id="tweets"> 
+  {% for tweet in tweets %}
+  <div class="tweet" id="tweet{{tweet.id}}">
+    <div class="text">
+    	<h2>{{tweet.name}}</h2>
+    	<p>{{tweet.text}}</p>
+    </div>
+	</div>
+  {% endfor %}
+</div>
+
+{% endblock %}
