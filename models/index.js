@@ -1,3 +1,4 @@
+var async = require('async');
 var Sequelize = require('sequelize')
 	, sequelize = new Sequelize('twitterjs', 'root', null, {
 		port: 3306,
@@ -23,26 +24,27 @@ sequelize.sync();
 
 module.exports = {
 	slotTweets: function(callback){
-		slots.gettweets({order: 'id'}).success(function(err, tweets){
+		slots.findAll({include:[tweets]}).complete(function(err, slots){
 			if (err) {
 				throw err;
-			}
-			// the slots findAll returns an object with a key 'tweet', 
-			// which contains all the info from the tweets table, which is what you actually want
-			callback(tweets.map(function(obj){
-				console.log(obj);
-				return obj.values.tweet
-			})); // sort because front-end just loops in begining (TODO!)
+			}			
+				async.mapSeries(slots, function(slot, cb){
+					slot.getTweets({order: 'id DESC'}).success(function(tweets){
+						cb(null, tweets[0].values);
+					})
+				},
+				function(err, results){
+					callback(results);
+				})
 		});
 	},
 	tweets : tweets,
 	slots: slots,
 	update: function(slot, name, text){
-		tweets.create({name: name, text: text, slot: slot}).success(function(tweet){
-      slots.find({where: {slot: slot}}).success(function(item){
-        item.destroy();
-        slots.create({slot: slot, id: tweet.null})
-      });        
+		tweets.create({name: name, text: text, slotId: slot}).success(function(tweet){
+			slots.find({where: {id: slot}}).success(function(item){
+	      item.updateAttributes({id: slot, tweet_id: tweet.null})        
+      });
     });
 	},
 };
