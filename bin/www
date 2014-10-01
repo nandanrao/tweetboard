@@ -9,14 +9,14 @@ var server = app.listen(app.get('port'), function() {
 });
 
 var io = require('socket.io').listen(server)
-var store = require('../store')
+var db = require('../models');
 
 io.on('connection', function(socket){
-    socket.on('newtweet', function(data){
-        var id = data.id;
-        var name = data.name;
-        var text = data.text;
-        store.push(name, text, id);
-        io.sockets.emit('newtweet', data)
-    })
-})
+  socket.on('newtweet', function(data){
+    var slot = data.id;
+    var name = data.name;
+    var text = data.text;
+    io.sockets.emit('newtweet', data);
+    db.update(slot, name, text)
+  });
+})  

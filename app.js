@@ -11,7 +11,6 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var tweet = require('./routes/tweet');
 
-var store = require('./store')
 
 var app = express();
 // view engine setup
@@ -37,20 +36,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
-
-// io.on('connection', function(socket){
-//     socket.on('newtweet', function(data){
-//         var id = data.id;
-//         var name = data.name;
-//         var text = data.text;
-//         store.push(name, text, id)
-//     })
-// })
-
-
- 
-
 
 
 

@@ -46,6 +46,7 @@
 
 	// Initialize with tweets from database... 
 	for (var i=0, len=tweets.children.length; i<len; i++){
+		console.log(i+1);
 		document.getElementById('tweet' + (i+1)).getElementsByClassName('text')[0].onclick = reup;
 	}
 
