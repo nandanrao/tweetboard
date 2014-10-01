@@ -22,6 +22,13 @@
     	<p>{{tweet.text}}</p>
     </div>
 	</div>
+  {% empty %}
+  <div class="tweet" id="tweet1">
+    <div class="text">
+      <h2></h2>
+      <p></p>
+    </div>
+  </div>
   {% endfor %}
 </div>
 
