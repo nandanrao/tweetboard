@@ -15,7 +15,9 @@ if (!global.hasOwnProperty('db')) {
     })
   } else {
     // the application is executed on the local machine ... use mysql
- 	sequelize = new Sequelize('twitterjs', 'root', null, {
+ 	sequelize = new Sequelize('twitterjs', 'nandanrao', 'fuz', {
+ 		dialect: 'postgres',
+ 		port: 5432,
 	});
  };
 };
@@ -63,7 +65,8 @@ module.exports = {
 	update: function(slot, name, text){
 		tweets.create({name: name, text: text, slotId: slot}).success(function(tweet){
 			slots.find({where: {id: slot}}).success(function(item){
-	      item.updateAttributes({id: slot, tweet_id: tweet.null})        
+				console.log(tweet);
+	      item.updateAttributes({id: slot, tweet_id: tweet.id})        
       });
     });
 	},
