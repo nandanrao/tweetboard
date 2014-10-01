@@ -16,19 +16,23 @@ var tweets = sequelize.import('../../../models/tweets.js');
 var slots = sequelize.import('../../../models/slots.js');
 
 // Associate your two models
-slots.hasOne(tweets, {foreignKey: 'id'});  
+slots.hasMany(tweets);
+tweets.belongsTo(slots);
+
+sequelize.sync();
 
 module.exports = {
 	slotTweets: function(callback){
-		slots.findAll({include:[tweets]}).complete(function(err, tweets){
+		slots.gettweets({order: 'id'}).success(function(err, tweets){
 			if (err) {
 				throw err;
 			}
 			// the slots findAll returns an object with a key 'tweet', 
 			// which contains all the info from the tweets table, which is what you actually want
 			callback(tweets.map(function(obj){
+				console.log(obj);
 				return obj.values.tweet
-			}).sort(function(a,b){return a.slot-b.slot})); // sort because front-end just loops in begining (TODO!)
+			})); // sort because front-end just loops in begining (TODO!)
 		});
 	},
 	tweets : tweets,
