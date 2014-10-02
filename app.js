@@ -5,13 +5,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var io = require('socket.io');
 var sync = require('async');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
-var tweet = require('./routes/tweet');
-
 
 var app = express();
 // view engine setup
@@ -36,6 +32,10 @@ app.use(function(req, res, next) {
     next(err);
 });
 
+// var mongoose = require('./models/index');
+// for (var i=0; i<10; i++){
+//     mongoose.create(i+1, 'Johnny Boi', 'hahahah');
+// };
 
 // error handlers
 

@@ -94,10 +94,11 @@
 	
 	// Build the initial tweets
 	socket.on('init', function(data){
+		console.log(data);
 		document.body.appendChild(initialBuilder(data.length));
 		window.requestAnimationFrame(function(){
 			data.forEach(function(tweet){
-				draw(tweet.slotId, tweet.name, tweet.text)
+				draw(tweet.slot, tweet.name, tweet.text)
 			});
 		});
 	});
