@@ -1,13 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var tweets = require('../models').slotTweets;
-
 /* GET home page. */
 router.get('/', function(req, res) {
-    tweets(function(tweets){
-      res.render('index', { title: 'Twitta', tweets: tweets, show_form: true }); 
-    })
+  res.render('index')
 });
 
 module.exports = router;

@@ -45,10 +45,10 @@
 	} 
 
 	// Initialize with tweets from database... 
-	for (var i=0, len=tweets.children.length; i<len; i++){
-		console.log(i+1);
-		document.getElementById('tweet' + (i+1)).getElementsByClassName('text')[0].onclick = reup;
-	}
+	// for (var i=0, len=tweets.children.length; i<len; i++){
+	// 	console.log(i+1);
+	// 	document.getElementById('tweet' + (i+1)).getElementsByClassName('text')[0].onclick = reup;
+	// }
 
 	var draw = function(id, name, text){
 		var tweet = document.getElementById('tweet'+id);
@@ -64,17 +64,51 @@
 		// set new tweet properties
 		tweet_text.querySelectorAll('h2')[0].innerHTML = name;
 		tweet_text.querySelectorAll('p')[0].innerHTML = text;
-		document.getElementById('tweet' + (i+1)).getElementsByClassName('text')[0].onclick = reup;
+		tweet.getElementsByClassName('text')[0].onclick = reup;
 		
-	}
+	};
 
+	// Build the TWEETS div
+	var createEl = function(tag, cls, id){
+		var el = document.createElement(tag);
+		if(id) el.id = id;
+		el.classList.add(cls);
+		return el;
+	}
+	var createTweet = function(id){
+		var text = createEl('div', 'text');
+		text.appendChild(document.createElement('h2'));
+		text.appendChild(document.createElement('p'));
+
+		var tweet = createEl('div', 'tweet', 'tweet'+id);
+		tweet.appendChild(text);
+		return tweet;
+	}
+	var initialBuilder = function(len){
+		var tweets = createEl('div', 'tweets', 'tweets');
+		for(var i=0; i<len; i++){
+			tweets.appendChild(createTweet(i+1))
+		};
+		return tweets;
+	};
+	
+	// Build the initial tweets
+	socket.on('init', function(data){
+		document.body.appendChild(initialBuilder(data.length));
+		window.requestAnimationFrame(function(){
+			data.forEach(function(tweet){
+				draw(tweet.slotId, tweet.name, tweet.text)
+			});
+		});
+	});
+
+	// Update page when a newtweet is referenced from server
 	socket.on('newtweet', function(data){
-		console.log('hearing from server!')
 		var id = data.id;
 		var name = data.name;
 		var text = data.text;
 		draw(id, name, text);
-	})
+	});
 
 	// closes forms when you click the margins
 	document.addEventListener("click", function (e) {

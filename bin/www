@@ -2,21 +2,14 @@
 var debug = require('debug')('twitterjs');
 var app = require('../app');
 
+// Setup the server
 app.set('port', process.env.PORT || 3000);
-
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
 
-var io = require('socket.io').listen(server)
-var db = require('../models');
+// Add socket.io to server
+var io = require('socket.io').listen(server);
+require('../sockets/base')(io);
 
-io.on('connection', function(socket){
-  socket.on('newtweet', function(data){
-    var slot = data.id;
-    var name = data.name;
-    var text = data.text;
-    io.sockets.emit('newtweet', data);
-    db.update(slot, name, text)
-  });
-})  
+// module.exports = server;
